@@ -1,0 +1,53 @@
+README
+ # Projet TP2 (Application de gestion des Produits)
+
+ #Charbel SONON
+
+ ## Prérequis
+Pour utiliser ce projet, vous devez avoir installé :
+1-Avoir installé Wamp Server (ou tout autre serveur de base de données MySQL). 
+2-Avoir créé une base de données dans Wamp Server avec le même nom que celui renseigné dans le fichier  application.properties(ici "tp") . 
+3-Modifier les informations d'accès à la base de données dans le fichier  application.properties  avec vos propres informations. 
+4-Java JDK
+5-Maven
+
+ ## Structure du projet
+Le projet est structuré comme une application Spring Boot standard. Le code source se trouve dans le répertoire   `src/main/java`  , les fichiers de configuration dans   `src/main/resources`   et les tests dans   `src/test/java`  . Les fichiers html de l'interface utilisateur se trouvent dans   `src/main/resources/templates`  .
+
+Vous pouvez également visualiser la structure du projet dans le fichier TP2.tree en l'ouvrant avec Bloc Note ou n'importe quel ide de votre choix 
+
+ ## Comment utiliser le projet
+	//Via un IDE
+1. Clonez ce dépôt sur votre machine locale, le dossier de votre choix(Vu qu'il s'agit pas d'un dépot git ici, copier coller juste le dossier)
+2. Ouvrer le dossier du projet dans un IDE(VS Code de préférence).Assurez-vous d'avoir correctement configuré votre IDE et d'avoir installé toutes les dépendances nécessaires.Si les dépendances ne sont pas installées, il est préférables d'avoir une connexion internet avant d'executer l'app afin que les dépendances s'installent automatiquement
+3. Modifiez les attributs de la base de données dans le fichier  `application.properties`  selon vos propres configurations. Assurez-vous de spécifier le nom de la base de données, l'utilisateur, le mot de passe, etc.
+4. N'oubliez pas de lancer le serveur local avant d'exécuter l'application(Wamp Server). Assurez-vous que votre serveur local est correctement configuré(la base de donée "tp" et la "produits" ayant été déjà créé si vous avez bien testé l'api du TP 1) et en cours d'exécution.
+7. Ouvrez un navigateur web et accédez à  `http://localhost:8080/ProduitApp/`  pour voir la liste des produits.
+8. Pour créer, mettre à jour ou supprimer un produit, utilisez les liens appropriés sur la page de la liste des produits.
+
+	//Via la ligne de commande
+1. Clonez ce dépôt sur votre machine locale. (ou copier coller)
+2. Accédez au répertoire du projet via la ligne de commande. 
+3. Exécutez la commande  mvn spring-boot:run  pour démarrer l'application. 
+4. Ouvrez un navigateur web et accédez à  http://localhost:8080/ProduitApp/ pour voir la liste des produits. 
+5. Pour créer, mettre à jour ou supprimer un produit, utilisez les liens appropriés sur la page de la liste des produits. 
+
+
+ ## Fichiers importants
+-   `ProduitController.java`   : Le contrôleur qui gère les requêtes HTTP.
+-   `ProduitService.java`   et   `ProduitServiceImpl.java`   : Le service qui effectue les opérations CRUD sur les produits.
+-   `ProduitRepository.java`   : Le dépôt qui interagit avec la base de données.
+-   `Produit.java`   : Le modèle de données pour un produit.
+-   `list.html`  ,   `create.html`  ,   `update.html`   : Les fichiers HTML respectifs pour l'affichage de la liste des produits, la création d'un produit et la mise à jour d'un produit.
+
+ ## Tests
+Pour exécuter les tests, utilisez la commande   `mvn test`  .
+
+
+ ## Remarques importantes
+Avant d'exécuter cette application, il est nécessaire d'avoir bien testé et réussi le TP 1 sur l'api 
+
+Si vous rencontrez des problèmes lors de l'utilisation de ce projet, veuillez ouvrir une issue.
+Pour plus de précisions, veuillez m'écrire 
+
+Coordialement

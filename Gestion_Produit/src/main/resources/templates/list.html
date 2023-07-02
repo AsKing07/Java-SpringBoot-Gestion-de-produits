@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+        <head>
+            <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Liste des produits</title>
+            <style>
+                /* CSS personnalisé */
+                body {
+                    font-family: Arial, sans-serif;
+                }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-bottom: 20px;
+                    padding-top: 20px;
+                }
+                th, td 
+                {
+                    padding: 10px;
+                    text-align: left;
+                    border-bottom: 1px solid #ccc;
+                }
+                th a, td a
+                {
+                    display: inline-block;
+                    margin-right: 10px;
+                    padding: 5px 10px;
+                    background-color: #00ff73;
+                    color: #fff;
+                    text-decoration: none;
+                    border-radius: 3px;
+                }
+
+                th a:hover, td a:hover
+                {
+                    color:#00ff73;
+                    background-color: #fff;
+                }
+
+                th 
+                {
+                    background-color: #f2f2f2;
+                }
+                a {
+                    display: inline-block;
+                    margin-right: 10px;
+                    padding: 5px 10px;
+                    background-color: #007bff;
+                    color: #fff;
+                    text-decoration: none;
+                    border-radius: 3px;
+                }
+                a:hover {
+                    background-color: #0056b3;
+                }
+            </style>
+        </head>
+        <body>
+          
+        
+        </th:block>
+
+
+            <h1 style="text-align: center;">Liste des produits</h1>
+
+
+            <div style="text-align: center; padding-bottom: 3%;">
+                <form th:action="@{/ProduitApp/recherche}" method="post">
+                    <input type="text" name="recherche" placeholder="Recherche..." required>
+                    <select name="critere">
+                        <option value="nom">Nom</option>
+                        <option value="prix">Prix</option>
+                        <option value="fournisseur">Fournisseur</option>
+                        <option value="dateExpiration">Date d'expiration</option>
+                    </select>
+                    <input type="submit" value="Rechercher">
+                </form>
+            </div>
+
+            
+
+            <div style="text-align: center; padding-bottom: 3%;">
+                <a th:if="${produits.hasPrevious()}" th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number-1},pageSize=${produits.size},sortBy=${sortBy})}">Précédent</a>
+                <span>Page:</span><span th:text="${produits.number+1}"></span>
+                <a th:if="${produits.hasNext()}" th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number+1},pageSize=${produits.size},sortBy=${sortBy})}">Suivant</a>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='nom')}">Nom</a></th>
+                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='prix')}">Prix</a></th>
+                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='devise')}">Devise</a></th>
+                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='taxe')}">Taxe</a></th>
+                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='dateExpiration')}">Expiration</a></th>
+                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='fournisseur')}">Fournisseur</a></th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="produit : ${produits}">
+                        <td th:text="${produit.nom}"></td>
+                        <td th:text="${produit.prix}"></td>
+                        <td th:text="${produit.devise}"></td>
+                        <td th:text="${produit.taxe}"></td>
+                        <td th:text="${produit.dateExpiration}"></td>
+                        <td th:text="${produit.fournisseur}"></td>
+                        <td>
+                            <a th:href="@{maj/{id}(id=${produit.id})}">Mettre à jour</a>
+                            <a th:href="@{delete/{id}(id=${produit.id})}">Supprimer</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="text-align: center;">
+                <a th:href="@{/ProduitApp/creation/}">Créer un nouveau produit</a>
+            </div>
+
+        </body>
+</html>
+
+
+<!-- 
+    Ce code HTML génère une page affichant une liste de produits. 
+    La page utilise Thymeleaf, une bibliothèque Java pour créer des modèles de pages HTML dynamiques. 
+    Le code HTML comprend une table avec des en-têtes de colonne pour les différentes propriétés des produits 
+    tels que le nom, le prix, la devise, la taxe, la date d'expiration et le fournisseur. 
+    Les données des produits sont extraites d'une variable "produits" dans le modèle Thymeleaf et affichées 
+    dans les lignes de la table à l'aide de la syntaxe Thymeleaf. 
+    Chaque ligne de la table contient également deux liens pour mettre à jour ou supprimer le produit correspondant. 
+    Enfin, il y a un lien pour créer un nouveau produit. 
+    Le code HTML comprend également du CSS personnalisé pour styliser la page.
+-->    
