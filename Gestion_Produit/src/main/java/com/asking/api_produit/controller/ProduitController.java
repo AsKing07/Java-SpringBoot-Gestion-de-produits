@@ -9,7 +9,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 
 
@@ -32,6 +37,7 @@ public class ProduitController
     {
         return "create";
     }
+
      @RequestMapping("/maj/{id}")
     public String update(Model model, @PathVariable Integer id) 
     {
@@ -65,30 +71,86 @@ public class ProduitController
             model.addAttribute("errorMessage", "Cette page n'existe pas!!!");
             return "error";
         }
+        String imagePath=System.getProperty("user.dir") + "/Gestion_Produit/src/main/resources/images";
+        model.addAttribute("imagePath", imagePath);
         model.addAttribute("produits", produitsPage);
         model.addAttribute("sortBy", sortBy);
         return "list";
     }
-     @PostMapping("create")
-    public String creer(@ModelAttribute Produit produit) 
+    @PostMapping("create")
+public String creer(@ModelAttribute Produit produit,@RequestParam("imageFile") MultipartFile imageFile ) throws IOException 
+{
+    produit.setImage(imageFile.getOriginalFilename());;
+   
+   if (!produit.getImageFile().isEmpty()) 
     {
-        produitService.creer(produit);
-        return acceuil;
+        String nomImage = saveImage(produit.getImageFile()); 
+        produit.setImage(nomImage);
     }
+    
+    produitService.creer(produit);
+    return acceuil;
+}
+
+    private String saveImage(MultipartFile imageFile) throws IllegalStateException, IOException 
+    {
+        
+            // Générer un nom de fichier unique pour l'image
+            String fileName = UUID.randomUUID().toString() + "_" + imageFile.getOriginalFilename();
+            // Définir le chemin d'accès complet pour sauvegarder l'image
+            String filePath = System.getProperty("user.dir") + "/Gestion_Produit/src/main/resources/static/Images/" + fileName;
+            // Créer un objet File avec le chemin d'accès complet
+            File dest = new File(filePath);
+            // Sauvegarder l'image sur le système de fichiers
+            imageFile.transferTo(dest);
+            // Retourner le chemin d'accès de l'image sauvegardée
+            return fileName;
+        } 
+       
+    
+
      @GetMapping(value = "/read")
     public List<Produit> read() 
     {
         return produitService.lire();
     }
-     @PostMapping("/update/{id}")
-    public String update(@ModelAttribute Produit produit) 
+
+     @PostMapping("/update/{id}") 
+    public String update(@ModelAttribute Produit produit, @RequestParam("imageFile") MultipartFile imageFile) throws IOException  
+    { 
+        Produit ancienProduit = produitService.trouverParId(produit.getId()); 
+        if (ancienProduit != null)  
+        { 
+            String ancienNomImage = ancienProduit.getImage(); 
+            if (ancienNomImage != null)  
+            { 
+                deleteImage(ancienNomImage); 
+            } 
+            if (!imageFile.isEmpty())  
+            { 
+                String nouveauNomImage = saveImage(imageFile);  
+                produit.setImage(nouveauNomImage); 
+            } 
+            produitService.modifier(produit.getId(), produit); 
+        } 
+        return acceuil; 
+    } 
+    public void deleteImage(String nomImage) 
     {
-        if (produitService.trouverParId(produit.getId()) != null) 
+        String cheminFichier = System.getProperty("user.dir") + "/Gestion_Produit/src/main/resources/static/Images/" + nomImage;
+    
+        File fichierImage = new File(cheminFichier);
+    
+        if (fichierImage.exists()) 
         {
-            produitService.modifier(produit.getId(), produit);
-        }
-        return acceuil;
+            fichierImage.delete();
+           
+        } 
     }
+ 
+
+
+
      @DeleteMapping("/{id}")
     public boolean delete(@PathVariable Integer id) 
     {

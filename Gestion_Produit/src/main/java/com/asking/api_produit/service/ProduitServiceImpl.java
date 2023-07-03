@@ -45,6 +45,7 @@ public class ProduitServiceImpl implements ProduitService
                             p.setFournisseur(produit.getFournisseur());
                             p.setTaxe(produit.getTaxe());
                             p.setDateExpiration(produit.getDateExpiration());
+                            p.setImage(produit.getImage());
                        return  produitRepository.save(p);
                         }).orElseThrow(() -> new RuntimeException("Produit non trouvé..."));
     }

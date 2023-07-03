@@ -53,7 +53,7 @@
 </head>
 <body>
     <h1>Modifier un produit</h1>
-    <form th:action="@{/ProduitApp/update/{id}(id=${produit.id})}" th:object="${produit}" method="POST">
+    <form th:action="@{/ProduitApp/update/{id}(id=${produit.id})}" th:object="${produit}" method="POST" enctype="multipart/form-data">
         <label for="nom">Nouveau Nom :</label>
         <input type="text" id="nom" th:field="*{nom}" required><br>
         <label for="prix">Nouveau Prix :</label>
@@ -71,7 +71,14 @@
         <input type="date" id="dateExpiration" th:field="*{dateExpiration}" required><br>
         <label for="fournisseur">Nouveau Fournisseur :</label>
         <input type="text" id="fournisseur" th:field="*{fournisseur}" required><br>
-        <button type="submit">Modifier</button>
+        <label for="imageFile">Nouvelle Image :</label>
+        <input type="file" id="imageFile" name="imageFile"><br>
+         <div>
+            <label>Image actuelle :</label><br>
+            <img th:if="${produit.image != null}" th:src="@{'/images/' + ${produit.image}}" alt="Image actuelle" style="max-width: 70px;"><br>
+            <span th:if="${produit.image == null}">Aucune image actuelle</span>
+        </div>
+         <button type="submit">Modifier</button>
     </form>
 </body>
 </html>

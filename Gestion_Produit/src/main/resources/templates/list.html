@@ -53,6 +53,10 @@
                 a:hover {
                     background-color: #0056b3;
                 }
+                table img {
+                max-width: 100px;
+                max-height: 100px;
+                }
             </style>
         </head>
         <body>
@@ -94,6 +98,7 @@
                         <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='taxe')}">Taxe</a></th>
                         <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='dateExpiration')}">Expiration</a></th>
                         <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='fournisseur')}">Fournisseur</a></th>
+                        <th>Images</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -105,9 +110,10 @@
                         <td th:text="${produit.taxe}"></td>
                         <td th:text="${produit.dateExpiration}"></td>
                         <td th:text="${produit.fournisseur}"></td>
+                        <td><img th:src="@{'/Images/' + ${produit.image}}" alt="Aucune image disponible "></td>                        
                         <td>
-                            <a th:href="@{maj/{id}(id=${produit.id})}">Mettre à jour</a>
-                            <a th:href="@{delete/{id}(id=${produit.id})}">Supprimer</a>
+                            <a th:href="@{/ProduitApp/maj/{id}(id=${produit.id})}">Mettre à jour</a>
+                            <a th:href="@{/ProduitApp/delete/{id}(id=${produit.id})}">Supprimer</a>
                         </td>
                     </tr>
                 </tbody>

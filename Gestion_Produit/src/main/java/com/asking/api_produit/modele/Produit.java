@@ -6,10 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
- import lombok.Getter;
+import javax.persistence.Transient;
+
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
  import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
  @Entity
 @Table(name = "PRODUITS")
 @Getter
@@ -28,4 +31,8 @@ public class Produit {
     private Date dateExpiration;
      private String fournisseur;
      private String image; // Nouvelle propriété pour l'image du produit
+     @Transient
+     private MultipartFile imageFile;
+     
+
  }
