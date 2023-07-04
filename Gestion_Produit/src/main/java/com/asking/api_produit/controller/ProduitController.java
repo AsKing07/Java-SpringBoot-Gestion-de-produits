@@ -42,12 +42,12 @@ public class ProduitController
     @RequestMapping("/listeAvecCon")
     public String liste(Model model) 
     {
-        return listePaginee(model, 0, 2, "id", "NULL");
+        return listePaginee(model, 0, 4, "id", "NULL");
     }
     @RequestMapping("/listeSansCon")
     public String liste2(Model model) 
     {
-        return listePaginee(model, 0, 2, "id", "NULL");
+        return listePaginee(model, 0, 4, "id", "NULL");
     }
 
 
@@ -67,7 +67,7 @@ public class ProduitController
         Produit produit = produitService.trouverParId(id);
         if (produit == null) 
         {
-            return listePaginee( model, 0, 2, "id", "Le produit sélectionné n'existe pas dans la base de données!");
+            return listePaginee( model, 0, 4, "id", "Le produit sélectionné n'existe pas dans la base de données!");
         }
         model.addAttribute("produit", produit);
         return "update";
@@ -126,7 +126,7 @@ public class ProduitController
         produitService.creer(produit);
 
 
-        return listePaginee( model, 2, 2, "id", "Le produit a bien été créé!!!");
+        return listePaginee( model, 0, 4, "id", "Le produit a bien été créé!!!");
       
     }
     
@@ -229,7 +229,7 @@ public class ProduitController
         Page<Produit> produits = produitService.recherche(recherche, critere);
         if(produits.getSize()==0)
         {
-            return listePaginee( model, 0, 2, "id", "Aucun résultat pour votre recherche!!");
+            return listePaginee( model, 0, 4, "id", "Aucun résultat pour votre recherche!!");
         }
         model.addAttribute("produits", produits);
         return "resultRecherche";
