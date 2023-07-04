@@ -103,12 +103,8 @@ public Page<Produit> lireProduitsPagine(int numeroPage, int taillePage, String t
     switch (critere) {
         case "nom":
             return produitRepository.findByNomContaining(recherche, pageable);
-        case "prix":
-            return produitRepository.findByPrixContaining(recherche, pageable);
         case "fournisseur":
             return produitRepository.findByFournisseurContaining(recherche, pageable);
-        case "dateExpiration":
-            return produitRepository.findByDateExpirationContaining(recherche, pageable);
         default:
             throw new IllegalArgumentException("Critère de recherche non valide: " + critere);
     }

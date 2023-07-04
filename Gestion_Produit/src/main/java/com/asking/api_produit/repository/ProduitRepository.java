@@ -10,7 +10,7 @@ public interface ProduitRepository extends JpaRepository<Produit, Integer>
 
     Page<Produit> findByNomContaining(String recherche, org.springframework.data.domain.Pageable pageable); 
  
-    Page<Produit> findByPrixContaining(String recherche, org.springframework.data.domain.Pageable pageable); 
+    Page<Produit> findByPrixContaining(Integer recherche, org.springframework.data.domain.Pageable pageable); 
  
     Page<Produit> findByFournisseurContaining(String recherche, org.springframework.data.domain.Pageable pageable); 
  
