@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="fr">
         <head>
             <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Liste des produits</title>
@@ -58,6 +58,9 @@
                 max-height: 100px;
                 }
             </style>
+            
+            <script src="https://www.thymeleaf.org/extras/spring-security/4.2.1.RELEASE/thymeleaf-extras-spring-security5.js"></script>
+           
         </head>
         <body>
           
@@ -69,37 +72,42 @@
 
 
             <div style="text-align: center; padding-bottom: 3%;">
-                <form th:action="@{/ProduitApp/recherche}" method="post">
+                <form th:action="@{/recherche}" method="post">
                     <input type="text" name="recherche" placeholder="Recherche..." required>
                     <select name="critere">
                         <option value="nom">Nom</option>
-                        <option value="prix">Prix</option>
                         <option value="fournisseur">Fournisseur</option>
-                        <option value="dateExpiration">Date d'expiration</option>
                     </select>
                     <input type="submit" value="Rechercher">
                 </form>
             </div>
 
+
+            <div style="text-align: center; padding-bottom: 1%;">
+                <div style="padding: 1%;" ><a th:href=@{/creation/}>Créer un nouveau produit</a></div>
+                <div sec:authorize="hasRole('admin')"><a th:href="@{/users}">Liste des Utilisateurs </a> </div>
+                <div style="padding: 1%;" ><a th:href=@{/logout}>Se déconnecter</a></div>
+              </div>
+
             
 
             <div style="text-align: center; padding-bottom: 3%;">
-                <a th:if="${produits.hasPrevious()}" th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number-1},pageSize=${produits.size},sortBy=${sortBy})}">Précédent</a>
+                <a th:if="${produits.hasPrevious()}" th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number-1},pageSize=${produits.size},sortBy=${sortBy})}">Précédent</a>
                 <span>Page:</span><span th:text="${produits.number+1}"></span>
-                <a th:if="${produits.hasNext()}" th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number+1},pageSize=${produits.size},sortBy=${sortBy})}">Suivant</a>
+                <a th:if="${produits.hasNext()}" th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number+1},pageSize=${produits.size},sortBy=${sortBy})}">Suivant</a>
             </div>
 
             <table>
                 <thead>
                     <tr>
-                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='nom')}">Nom</a></th>
-                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='prix')}">Prix</a></th>
-                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='devise')}">Devise</a></th>
-                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='taxe')}">Taxe</a></th>
-                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='dateExpiration')}">Expiration</a></th>
-                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='fournisseur')}">Fournisseur</a></th>
+                        <th><a th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='nom')}">Nom</a></th>
+                        <th><a th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='prix')}">Prix</a></th>
+                        <th><a th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='devise')}">Devise</a></th>
+                        <th><a th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='taxe')}">Taxe</a></th>
+                        <th><a th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='dateExpiration')}">Expiration</a></th>
+                        <th><a th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='fournisseur')}">Fournisseur</a></th>
                         <th>Images</th>
-                        <th>Actions</th>
+                        <th sec:authorize="hasRole('admin')">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -111,17 +119,33 @@
                         <td th:text="${produit.dateExpiration}"></td>
                         <td th:text="${produit.fournisseur}"></td>
                         <td><img th:src="@{'/Images/' + ${produit.image}}" alt="Aucune image disponible "></td>                        
-                        <td>
-                            <a th:href="@{/ProduitApp/maj/{id}(id=${produit.id})}">Mettre à jour</a>
-                            <a th:href="@{/ProduitApp/delete/{id}(id=${produit.id})}">Supprimer</a>
+                        <td sec:authorize="hasRole('admin')">
+                            <a th:href="@{/maj/{id}(id=${produit.id})}">Mettre à jour</a>
+                            <a th:href="@{/delete/{id}(id=${produit.id})}">Supprimer</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div style="text-align: center;">
-                <a th:href="@{/ProduitApp/creation/}">Créer un nouveau produit</a>
+                <a th:href="@{/creation/}">Créer un nouveau produit</a>
             </div>
 
+
+            <script th:inline="javascript">
+                /* Récupérer le message passé depuis la méthode creer */
+                var message = [[${message}]] ;
+            
+                /* Vérifier si le message est défini */
+                if (message) 
+                {
+                    /* Afficher l'alerte avec le message */
+                    alert(message);
+                }
+
+               
+              // Modifier l'URL  dans la barre d'adresse
+              history.pushState(null, null, "/Liste des produits");
+            </script>
         </body>
 </html>
 
@@ -136,4 +160,15 @@
     Chaque ligne de la table contient également deux liens pour mettre à jour ou supprimer le produit correspondant. 
     Enfin, il y a un lien pour créer un nouveau produit. 
     Le code HTML comprend également du CSS personnalisé pour styliser la page.
+
+
+
+
+
+
+
+
+
+    <td sec:authorize="hasRole('admin')"><a th:href="@{/showFormUpdate/{id}(id=${product.id})}" class="btn btn-info">Update</a>
+						<a th:href="@{/deleteProduct/{id}(id=${product.id})}" class="btn btn-danger">Delete</a></td>
 -->    

@@ -64,7 +64,7 @@
     <body>
         <h1 style="text-align: center;">Résultats de la recherche</h1>
          <div style="text-align: center; padding-bottom: 3%;">
-            <a href="/ProduitApp/">Retour à la liste des produits</a>
+            <a href="/listeSansCon">Retour à la liste des produits</a>
         </div>
          
        
@@ -73,20 +73,20 @@
            
 
             <div style="text-align: center; padding-bottom: 3%;">
-                <a th:if="${produits.hasPrevious()}" th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number-1},pageSize=${produits.size},sortBy=${sortBy})}">Précédent</a>
+                <a th:if="${produits.hasPrevious()}" th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number-1},pageSize=${produits.size},sortBy=${sortBy})}">Précédent</a>
                 <span>Page:</span><span th:text="${produits.number+1}"></span>
-                <a th:if="${produits.hasNext()}" th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number+1},pageSize=${produits.size},sortBy=${sortBy})}">Suivant</a>
+                <a th:if="${produits.hasNext()}" th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number+1},pageSize=${produits.size},sortBy=${sortBy})}">Suivant</a>
             </div>
 
             <table>
                 <thead>
                     <tr>
-                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='nom')}">Nom</a></th>
-                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='prix')}">Prix</a></th>
-                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='devise')}">Devise</a></th>
-                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='taxe')}">Taxe</a></th>
-                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='dateExpiration')}">Expiration</a></th>
-                        <th><a th:href="@{/ProduitApp/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='fournisseur')}">Fournisseur</a></th>
+                        <th><a th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='nom')}">Nom</a></th>
+                        <th><a th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='prix')}">Prix</a></th>
+                        <th><a th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='devise')}">Devise</a></th>
+                        <th><a th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='taxe')}">Taxe</a></th>
+                        <th><a th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='dateExpiration')}">Expiration</a></th>
+                        <th><a th:href="@{/liste/{page}/{pageSize}/{sortBy}(page=${produits.number},pageSize=${produits.size},sortBy='fournisseur')}">Fournisseur</a></th>
                         <th>Images</th>
                         <th>Actions</th>
                     </tr>
@@ -109,6 +109,10 @@
             </table>
             
 
+            <script>
+                // Modifier l'URL  dans la barre d'adresse
+                history.pushState(null, null, "/Résultats de la recherche");
+             </script>
 
     </body>
 </html>

@@ -53,7 +53,7 @@
 </head>
 <body>
     <h1>Modifier un produit</h1>
-    <form th:action="@{/ProduitApp/update/{id}(id=${produit.id})}" th:object="${produit}" method="POST" enctype="multipart/form-data">
+    <form th:action="@{/update/{id}(id=${produit.id})}" th:object="${produit}" method="POST" enctype="multipart/form-data">
         <label for="nom">Nouveau Nom :</label>
         <input type="text" id="nom" th:field="*{nom}" required><br>
         <label for="prix">Nouveau Prix :</label>
@@ -80,5 +80,10 @@
         </div>
          <button type="submit">Modifier</button>
     </form>
+
+    <script>
+        // Modifier l'URL dans la barre d'adresse
+        history.pushState(null, null, "/Formulaire de mise à jour");
+    </script>
 </body>
 </html>

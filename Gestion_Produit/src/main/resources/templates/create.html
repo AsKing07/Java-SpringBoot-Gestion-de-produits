@@ -51,7 +51,7 @@
 </head>
 <body>
     <h1>Créer un nouveau produit</h1>
-    <form th:action="@{/ProduitApp/create}" method="POST" enctype="multipart/form-data">
+    <form th:action="@{/create}" method="POST" enctype="multipart/form-data">
         <label for="nom">Nom :</label>
         <input type="text" id="nom" name="nom" required><br>
         <label for="prix">Prix :</label>
@@ -73,5 +73,9 @@
         <input type="file" id="imageFile" name="imageFile"><br>
         <button type="submit">Ajouter</button>
     </form>
+    <script>
+        // Modifier l'URL  dans la barre d'adresse
+        history.pushState(null, null, "/Créer un nouveau produit");
+    </script>
 </body>
 </html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue</title>
+
+    <style>
+        button {
+            background-color: lightgreen;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: skyblue;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1 style="text-align: center;">Bienvenue à notre application de gestion de produits!</h1>
+    <p style="text-align: center;">Veuillez vous connecter pour continuer.</p>
+
+    <div style="text-align: center;">      
+       <a th:href=@{/register}><button type="button" >S'inscrire</button></a>
+       <a th:href=@{/login}><button type="button" >Se connecter</button></a>
+      </div>
+    
+      <script>
+              // Modifier l'URL dans la barre d'adresse
+              history.pushState(null, null, "/Bienvenue à vous");
+      </script>
+</body>
+</html>

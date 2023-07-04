@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accès refusé</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" 
+crossorigin="anonymous">
+</head>
+<body>
+	<div>
+		<h1>Interdit!!!!</h1>
+		<h3>Cette est uniquement réservé aux admin!!!Veuillez retournez en arriere et vous connectez en tant qu'administrateur!</h3>
+	</div>
+	<script>
+		// Modifier l'URL  dans la barre d'adresse
+		history.pushState(null, null, "/Accès interdit!");
+	</script>
+</body>
+</html>
