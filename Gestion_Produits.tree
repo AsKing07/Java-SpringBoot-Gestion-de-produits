@@ -1,0 +1,172 @@
+Gestion_Produit
+├── .classpath
+├── .factorypath
+├── .gitignore
+├── .idea
+│   ├── .gitignore
+│   ├── compiler.xml
+│   ├── encodings.xml
+│   ├── jarRepositories.xml
+│   ├── misc.xml
+│   └── workspace.xml
+├── .mvn
+│   └── wrapper
+│       ├── maven-wrapper.jar
+│       └── maven-wrapper.properties
+├── .project
+├── .settings
+│   ├── org.eclipse.core.resources.prefs
+│   ├── org.eclipse.jdt.apt.core.prefs
+│   ├── org.eclipse.jdt.core.prefs
+│   ├── org.eclipse.m2e.core.prefs
+│   └── org.springframework.ide.eclipse.prefs
+├── .vscode
+│   └── NEWLY_CREATED_BY_SPRING_INITIALIZR
+├── bin
+│   ├── .gitignore
+│   ├── .mvn
+│   │   └── wrapper
+│   │       ├── maven-wrapper.jar
+│   │       └── maven-wrapper.properties
+│   ├── .project
+│   ├── .settings
+│   │   └── org.eclipse.core.resources.prefs
+│   ├── .vscode
+│   │   └── NEWLY_CREATED_BY_SPRING_INITIALIZR
+│   ├── HELP.md
+│   ├── mvnw
+│   ├── mvnw.cmd
+│   ├── pom.xml
+│   ├── src
+│   │   ├── main
+│   │   │   ├── java
+│   │   │   │   └── com
+│   │   │   │       └── asking
+│   │   │   │           └── api_produit
+│   │   │   │               └── ApiProduitApplication.class
+│   │   │   └── resources
+│   │   │       ├── application.properties
+│   │   │       └── templates
+│   │   └── test
+│   │       └── java
+│   │           └── com
+│   │               └── asking
+│   │                   └── api_produit
+│   │                       └── ApiProduitApplicationTests.class
+│   └── target
+│       └── classes
+│           └── META-INF
+│               └── MANIFEST.MF
+├── HELP.md
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── asking
+│   │   │           └── api_produit
+│   │   │               ├── ApiProduitApplication.java
+│   │   │               ├── controller
+│   │   │               │   ├── ProduitController.java
+│   │   │               │   ├── SecConfiguration.java
+│   │   │               │   ├── StatusErrorController.java
+│   │   │               │   └── UserController.java
+│   │   │               ├── CryptMotDePasse.java
+│   │   │               ├── modele
+│   │   │               │   ├── Produit.java
+│   │   │               │   └── User.java
+│   │   │               ├── repository
+│   │   │               │   ├── ProduitRepository.java
+│   │   │               │   └── UserRepository.java
+│   │   │               └── service
+│   │   │                   ├── CustomUserDetails.java
+│   │   │                   ├── CustomUserDetailsService.java
+│   │   │                   ├── ProduitService.java
+│   │   │                   └── ProduitServiceImpl.java
+│   │   └── resources
+│   │       ├── application.properties
+│   │       ├── static
+│   │       │   ├── Images
+│   │       │   ├── js
+│   │       │   │   └── script.js
+│   │       │   └── logo
+│   │       │       ├── logo.png
+│   │       │       └── logo.svg
+│   │       └── templates
+│   │           ├── create.html
+│   │           ├── createUser.html
+│   │           ├── error
+│   │           │   ├── 403.html
+│   │           │   ├── 404.html
+│   │           │   ├── 500.html
+│   │           │   └── error.html
+│   │           ├── index.html
+│   │           ├── list.html
+│   │           ├── register_success.html
+│   │           ├── resultRecherche.html
+│   │           ├── update.html
+│   │           └── users.html
+│   └── test
+│       └── java
+│           └── com
+│               └── asking
+│                   └── api_produit
+│                       └── ApiProduitApplicationTests.java
+└── target
+    ├── classes
+    │   ├── application.properties
+    │   ├── com
+    │   │   └── asking
+    │   │       └── api_produit
+    │   │           ├── ApiProduitApplication$StaticResourceConfiguration.class
+    │   │           ├── ApiProduitApplication.class
+    │   │           ├── controller
+    │   │           │   ├── ProduitController.class
+    │   │           │   ├── SecConfiguration.class
+    │   │           │   ├── StatusErrorController.class
+    │   │           │   └── UserController.class
+    │   │           ├── CryptMotDePasse.class
+    │   │           ├── modele
+    │   │           │   ├── Produit.class
+    │   │           │   └── User.class
+    │   │           ├── repository
+    │   │           │   ├── ProduitRepository.class
+    │   │           │   └── UserRepository.class
+    │   │           └── service
+    │   │               ├── CustomUserDetails.class
+    │   │               ├── CustomUserDetailsService.class
+    │   │               ├── ProduitService.class
+    │   │               └── ProduitServiceImpl.class
+    │   ├── static
+    │   │   ├── Images
+    │   │   │   └── js
+    │   │   ├── js
+    │   │   │   └── script.js
+    │   │   └── logo
+    │   │       ├── logo.png
+    │   │       └── logo.svg
+    │   └── templates
+    │       ├── create.html
+    │       ├── createUser.html
+    │       ├── error
+    │       │   ├── 403.html
+    │       │   ├── 404.html
+    │       │   ├── 500.html
+    │       │   └── error.html
+    │       ├── index.html
+    │       ├── list.html
+    │       ├── register_success.html
+    │       ├── resultRecherche.html
+    │       ├── update.html
+    │       └── users.html
+    ├── generated-sources
+    │   └── annotations
+    ├── generated-test-sources
+    │   └── test-annotations
+    └── test-classes
+        └── com
+            └── asking
+                └── api_produit
+                    └── ApiProduitApplicationTests.class

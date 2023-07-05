@@ -240,38 +240,6 @@ public class ProduitController
 
 
 
-
-
-
-
-
-
-
-
-
-   
-     
-     
-     
-    
-     
-    
-   
-     
-   
-     
-   
-
-
-
-
-
-
-
-
-
-
-
 /*
  Le contrôleur ProduitController gère les requêtes liées aux produits.
 

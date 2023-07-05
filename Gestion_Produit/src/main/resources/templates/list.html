@@ -3,6 +3,7 @@
         <head>
             <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Liste des produits</title>
+            <link rel="icon" type="image/x-icon" href="/logo/logo.png">
             <style>
                 /* CSS personnalisé */
                 body {
@@ -219,26 +220,3 @@
         </body>
 </html>
 
-
-<!-- 
-    Ce code HTML génère une page affichant une liste de produits. 
-    La page utilise Thymeleaf, une bibliothèque Java pour créer des modèles de pages HTML dynamiques. 
-    Le code HTML comprend une table avec des en-têtes de colonne pour les différentes propriétés des produits 
-    tels que le nom, le prix, la devise, la taxe, la date d'expiration et le fournisseur. 
-    Les données des produits sont extraites d'une variable "produits" dans le modèle Thymeleaf et affichées 
-    dans les lignes de la table à l'aide de la syntaxe Thymeleaf. 
-    Chaque ligne de la table contient également deux liens pour mettre à jour ou supprimer le produit correspondant. 
-    Enfin, il y a un lien pour créer un nouveau produit. 
-    Le code HTML comprend également du CSS personnalisé pour styliser la page.
-
-
-
-
-
-
-
-
-
-    <td sec:authorize="hasRole('admin')"><a th:href="@{/showFormUpdate/{id}(id=${product.id})}" class="btn btn-info">Update</a>
-						<a th:href="@{/deleteProduct/{id}(id=${product.id})}" class="btn btn-danger">Delete</a></td>
--->    
