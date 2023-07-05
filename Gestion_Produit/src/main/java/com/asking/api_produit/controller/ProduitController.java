@@ -30,6 +30,7 @@ public class ProduitController
 {
     private final ProduitService produitService;
     
+    
 
      // Méthode pour afficher la liste des produits
     @RequestMapping("/")
@@ -126,7 +127,7 @@ public class ProduitController
         produitService.creer(produit);
 
 
-        return listePaginee( model, 0, 4, "id", "Le produit a bien été créé!!!");
+        return listePaginee( model, 0, 4, "id", "Le produit a bien été créé!!! \n Veuillez réactualiser la page pour charger les images");
       
     }
     
@@ -174,7 +175,7 @@ public class ProduitController
             } 
             produitService.modifier(produit.getId(), produit); 
         } 
-        return listePaginee( model, 0, 2, "id", "Le produit a bien été mis à jour!!!");
+        return listePaginee( model, 0, 4, "id", "Le produit a bien été mis à jour!!!");
     } 
   
   
@@ -212,7 +213,7 @@ public class ProduitController
     {
         if(delete(id)) 
         {
-            return "list";
+            return listePaginee(model, 0, 4, "id", "Suppression réussie");
         } 
         else 
         {
