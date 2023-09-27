@@ -10,10 +10,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.asking.api_produit.service.CustomUserDetailsService;
+import io.github.cdimascio.dotenv.Dotenv;
 
 @Configuration
 @EnableWebSecurity
 public class SecConfiguration extends WebSecurityConfigurerAdapter {
+
+
+    @Bean
+    public Dotenv dotenv() {
+        return Dotenv.configure().filename(".env").load();
+    }
+    
 
     // Définition du service de détails de l'utilisateur
     @Bean
@@ -41,7 +49,7 @@ public class SecConfiguration extends WebSecurityConfigurerAdapter {
         // Configuration de l'authentification
         auth.authenticationProvider(authenticationProvider());
         auth.inMemoryAuthentication().passwordEncoder(passwordEncoder()).withUser("Charbel")
-                .password(passwordEncoder().encode("Charbel050503")).roles("admin");
+                .password(passwordEncoder().encode(dotenv().get("ADMIN_PASSWORD"))).roles("admin");
     }
 
     @Override
