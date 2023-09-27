@@ -9,58 +9,54 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import com.asking.api_produit.service.CustomUserDetailsService;
-
 
 @Configuration
 @EnableWebSecurity
-public class SecConfiguration extends WebSecurityConfigurerAdapter
-{
-     
+public class SecConfiguration extends WebSecurityConfigurerAdapter {
+
+    // Définition du service de détails de l'utilisateur
     @Bean
-    public UserDetailsService userDetailsService() 
-    {
+    public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
     }
-     
+
+    // Définition de l'encodeur de mot de passe
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() 
-    {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-     
+
+    // Définition du fournisseur d'authentification
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() 
-    {
+    public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
-         
         return authProvider;
     }
-    
+
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception 
-    {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // Configuration de l'authentification
         auth.authenticationProvider(authenticationProvider());
         auth.inMemoryAuthentication().passwordEncoder(passwordEncoder()).withUser("Charbel")
-		.password(passwordEncoder().encode("Charbel050503")).roles("admin");
+                .password(passwordEncoder().encode("Charbel050503")).roles("admin");
     }
- 
+
     @Override
-    protected void configure(HttpSecurity http) throws Exception 
-    {
+    protected void configure(HttpSecurity http) throws Exception {
+        // Configuration des autorisations d'accès
         http.authorizeRequests()
-            .antMatchers("/listeAvecCon","/creation/","/saveProduct","/maj/*","/delete/*").authenticated()
-            .antMatchers("/users","/deleteUser/*").hasRole("admin")
-            .anyRequest().permitAll()
-            .and()
-            .formLogin()
+                .antMatchers("/listeAvecCon", "/creation/", "/saveProduct", "/maj/*", "/delete/*").authenticated()
+                .antMatchers("/users", "/deleteUser/*").hasRole("admin")
+                .anyRequest().permitAll()
+                .and()
+                .formLogin()
                 .usernameParameter("email")
-                .defaultSuccessUrl( "/listeAvecCon")
+                .defaultSuccessUrl("/listeAvecCon")
                 .permitAll()
-            .and()
-            .logout().logoutSuccessUrl("/").permitAll();
-    }   
+                .and()
+                .logout().logoutSuccessUrl("/").permitAll();
+    }
 }

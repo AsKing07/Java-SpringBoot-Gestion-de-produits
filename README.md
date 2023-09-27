@@ -54,17 +54,7 @@ Gestion_Produit/
 │   │           ├── resultRecherche.html
 │   │           ├── update.html
 │   │           └── users.html
-│   └── test/
-│       └── java/
-│           └── com/
-│               └── asking/
-│                   └── api_produit/
-│                       └── ApiProduitApplicationTests.java
-├── .gitignore
-├── HELP.md
-├── mvnw
-├── mvnw.cmd
-└── pom.xml
+
 ```
 
 ## Description du projet
@@ -74,6 +64,14 @@ Le projet "Gestion de Produit" est une application Spring Boot qui offre les fon
 1. Gestion des produits : permet d'ajouter, de modifier et de supprimer des produits avec leurs informations.
 
 2. Gestion des utilisateurs : permet d'ajouter, de modifier et de supprimer des utilisateurs avec leurs informations.
+
+## Images
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="Img1.png" alt="Image 1" width="300">
+  <img src="Img2.png" alt="Image 2" width="300">
+  <img src="Img3.png" alt="Image 3" width="300">
+</div>
 
 ## Comment utiliser le projet
 
